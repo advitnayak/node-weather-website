@@ -10,8 +10,11 @@ const forecast = (coordinates,callback)=>{
             callback('Please provide valid url',undefined);
         }
         else{
+            // console.log(response.body.daily.data[0])
             celsius = ((response.body.currently.temperature - 32)*(5/9)).toFixed(2)
-            callback(undefined,"Current temperature is "+celsius+" degress out. There is "+response.body.currently.precipProbability+"% chance of rain")
+            highTemp = ((response.body.daily.data[0].temperatureHigh - 32)*(5/9)).toFixed(2)
+            lowTemp = ((response.body.daily.data[0].temperatureLow - 32)*(5/9)).toFixed(2)
+            callback(undefined,"Current temperature is "+celsius+" degress out.\n Today's High Temperature is "+highTemp+ " and Low Temperature is "+lowTemp+".\n There is "+response.body.currently.precipProbability+"% chance of rain")
         }
     })
 }
