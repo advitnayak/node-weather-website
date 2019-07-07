@@ -10,7 +10,8 @@ const forecast = (coordinates,callback)=>{
             callback('Please provide valid url',undefined);
         }
         else{
-            callback(undefined,"Current temperature is "+response.body.currently.temperature+" degress out. There is "+response.body.currently.precipProbability+"% chance of rain")
+            celsius = ((response.body.currently.temperature - 32)*(5/9)).toFixed(2)
+            callback(undefined,"Current temperature is "+celsius+" degress out. There is "+response.body.currently.precipProbability+"% chance of rain")
         }
     })
 }
